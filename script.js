@@ -1,52 +1,42 @@
-// Simulasi keranjang menggunakan localStorage
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let keranjang = [];
+let totalHarga = 0;
 
-// Fungsi tambah ke keranjang
-function addToCart(name, price) {
-    cart.push({ name, price, qty: 1 });
-    localStorage.setItem('cart', JSON.stringify(cart));
-    alert('Ditambahkan ke keranjang!');
+function tambahKeKeranjang(namaProduk, hargaProduk) {
+    keranjang.push({ nama: namaProduk, harga: hargaProduk });
+    totalHarga += hargaProduk;
+    perbaruiTampilanKeranjang();
 }
 
-// Update keranjang di halaman cart
-function updateCart() {
-    const cartItems = document.getElementById('cart-items');
-    const totalEl = document.getElementById('total');
-    cartItems.innerHTML = '';
-    let total = 0;
-    cart.forEach((item, index) => {
-        total += item.price * item.qty;
-        cartItems.innerHTML += `<div>${item.name} - Rp ${item.price} x ${item.qty} <button onclick="removeItem(${index})">Hapus</button></div>`;
+function perbaruiTampilanKeranjang() {
+    const daftarPesan = document.getElementById('daftar-pesanan');
+    const teksTotal = document.getElementById('total-harga');
+
+    daftarPesan.innerHTML = '';
+
+    keranjang.forEach((item) => {
+        const li = document.createElement('li')
+
+        li.textContent = `${item.nama} - Rp. ${item.harga.toLocaleString('id-ID')}`;
+        daftarPesan.appendChild(li);
     });
-    totalEl.textContent = `Rp ${total}`;
+
+    teksTotal.textContent = totalHarga.toLocaleString('id-ID');
 }
+function checkoutWA() {
+    if (keranjang.length === 0) {
+        alert("Keranjang Anda masih kosong. Silahkan dipilih menunya!");
+        return
+    }
+    const nomorWA = "085795125230"
+    let pesan = "Hallo kak, Saya ingin memesan Mochi dari toko Anda:\n\n";
 
-// Hapus item dari keranjang
-function removeItem(index) {
-    cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCart();
+    keranjang.forEach((item, index) => {
+        pesan += `${index + 1}. ${item.nama} - Rp. ${item.harga.toLocaleString('id-ID')}\n`;
+    });
+
+    pesan += `\n*Total Tagihan: Rp ${totalHarga.toLocaleString('id-ID')}*`;
+    pesan += "\n\nApakah pesanan saya bisa diproses?";
+
+    const pesanEncoded = encodeURIComponent(pesan);
+    window.open(`https://wa.me/${nomorWA}?text=${pesanEncoded}`, '_blank');
 }
-
-// Checkout (simulasi)
-function checkout() {
-    alert('Checkout berhasil! Total: ' + document.getElementById('total').textContent);
-    cart = [];
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCart();
-}
-
-// Validasi form register/login (sederhana)
-document.getElementById('register-form')?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Registrasi berhasil!');
-});
-document.getElementById('login-form')?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Login berhasil!');
-});
-
-// Load keranjang saat halaman cart dimuat
-if (window.location.pathname.includes('cart.html')) {
-    updateCart();
-}x
