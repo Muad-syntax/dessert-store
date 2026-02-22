@@ -253,6 +253,11 @@ footer {
       visibility: visible;
       transform: translateY(0);
     }
+
+    .card:hover > :not(:hover) {
+      filter: none;
+      opacity: 1;
+    }
 }
 
 header.menu-buka {
