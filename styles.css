@@ -73,6 +73,7 @@ header.scrolled {
   position: relative;
   z-index: 1;
   width: 50%;
+  min-width: 700px;
   height: 100%;
   border-radius: 50px 50px 0px 0px;
   font-family: "Coiny", system-ui;
@@ -184,14 +185,23 @@ footer {
 }
 
 /* Untuk layar HP (ukuran di bawah 600px) */
-@media (max-width: 600px) {
+/* Ubah angka 600px menjadi 700px agar sinkron dengan min-width di atas */
+@media (max-width: 700px) {
+    /* TAMBAHKAN PENGATURAN CONTAINER UNTUK HP */
+    .container {
+        width: 100%; /* Container akan mengambil seluruh lebar layar HP */
+        min-width: auto; /* Membatalkan paksaan 700px dari kode desktop */
+        border-radius: 0; /* Opsional: Membuat ujung atas tidak melengkung di HP biasanya terlihat lebih rapi */
+    }
+    
+    /* KODE LAMA ANDA TETAP DIPERTAHANKAN */
     .card {
-        width: 95%; /* Melebarkan grid sedikit di layar HP */
-        grid-template-columns: repeat(2, 1fr); /* Memaksa 2 kolom di HP */
+        width: 95%; 
+        grid-template-columns: repeat(2, 1fr); 
     }
     
     header nav ul {
-        flex-direction: column; /* Membuat menu navigasi bertumpuk ke bawah jika sempit */
+        flex-direction: column; 
         gap: 10px;
     }
 }
