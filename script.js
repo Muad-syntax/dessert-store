@@ -27,7 +27,7 @@ function checkoutWA() {
         alert("Keranjang Anda masih kosong. Silahkan dipilih menunya!");
         return
     }
-    const nomorWA = "085795125230"
+    const nomorWA = "+6285795125230"
     let pesan = "Hallo kak, Saya ingin memesan Mochi dari toko Anda:\n\n";
 
     keranjang.forEach((item, index) => {
