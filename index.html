@@ -16,14 +16,17 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Coiny&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend+Deca:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik+Spray+Paint&family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
     <div class="container">
         <header>
             <nav>
-                <img src="Momochi.png" alt="" class="logo">
-
+                <div class="nama-toko">
+                    <img src="Momochi.png" alt="" class="logo">
+                    <h2>Dessert Store</h2>
+                </div>
                 <div class="hamburger" id="hamburger-menu">
                     <span></span>
                     <span></span>
@@ -31,18 +34,20 @@
                 </div>
 
                 <ul type="none" id="nav-menu">
-                    <li><a href="#beranda">Beranda</a></li>
-                    <li><a href="#produk">Produk</a></li>
-                    <li><a href="#keranjang">Keranjang</a></li>
-                    <li><a href="#footer">Footer</a></li>
+                    <li><a href="#beranda" class="btn">Beranda</a></li>
+                    <li><a href="#produk" class="btn">Produk</a></li>
+                    <li><a href="#keranjang" class="btn">Keranjang</a></li>
+                    <li><a href="#footer" class="btn">Footer</a></li>
                 </ul>
             </nav>
         </header>
         <main>
             <section class="hero" id="beranda">
-                <h1>Selamat Datang di Toko Elegan</h1>
-                <p>Belanja produk berkualitas dengan desain yang elegan.</p>
-                <a href="products.html" class="btn">Lihat Produk</a>
+                <h1>Selamat Datang di <br> Dessert Store</h1>
+                <p>
+                <h3 style="font-weight: 100;">Menawarkan berbagai macam hidangan penutup</h3>
+                </p>
+                <a href="#produk" class="btn">Lihat Produk</a>
             </section>
             <div class="menu" id="produk">
                 <h1>Produk</h1>
@@ -142,9 +147,9 @@
         </main>
         <div class="keranjang" id="keranjang">
             <h1>Keranjang</h1>
-            <ol style="padding: 0;">
+            <ul style="padding: 0;" type="none">
                 <li id="daftar-pesanan"></li>
-            </ol>
+            </ul>
 
             <h3>Total: Rp <span id="total-harga">0</span></h3>
 
@@ -154,7 +159,46 @@
 
         </div>
         <footer id="footer">
-            <p>&copy; 2026 Desert Store. Semua hak dilindungi.</p>
+            <div class="footer-main">
+                <div class="footer-contact">
+                    <div class="footer-section contact">
+                        <h3>Kontak Kami</h3>
+                        <p>📍 Jl. Manis Sekali No. 123</p>
+                        <p>📞 +62 857-9512-5230</p>
+                        <a href="#" class="btn-gofood">
+                            <i class="fas fa-motorcycle"></i> Order via GoFood
+                        </a>
+                    </div>
+                    <div class="social-icons">
+                        <h3>Kunjungi media sosial kami</h3>
+                        <div class="icons">
+                            <a href="https://www.instagram.com/momocichimomo?igsh=MXQ3dGx3eG41N2ZocQ=="><i class="fab fa-instagram"></i></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61586943933387&mibextid=ZbWKwL"><i class="fab fa-facebook"></i></i></a>
+                            <a href="https://www.tiktok.com/@momochioish1?_r=1&_t=ZS-93Ib79KWyZt"><i class="fab fa-tiktok"></i></i></a>
+                            <a href="https://youtube.com/@chimomodeli?si=X6Hx04asf9-ArIu1"><i class="fab fa-youtube"></i></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-content">
+                    <div class="footer-section about">
+                        <h3>Dessert Store</h3>
+                        <p>Menyediakan berbagai macam mochi <br> dan hidangan penutup manis untuk <br> hari istimewa Anda.</p>
+                    </div>
+                    <div class="footer-section links">
+                        <h3>Navigasi</h3>
+                        <ul>
+                            <li><a href="#beranda">Beranda</a></li>
+                            <li><a href="#produk">Produk</a></li>
+                            <li><a href="#keranjang">Keranjang</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Desert Store. Semua hak dilindungi.</p>
+            </div>
         </footer>
     </div>
     <script src="script.js"></script>
