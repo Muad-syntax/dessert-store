@@ -272,6 +272,18 @@ header.scrolled {
   opacity: 0.5;
 }
 
+/* animasi fade in scrol */
+.fade-in{
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 0.8s ease-out, trasnform 0.8s ease-out;
+}
+
+.fade-in.muncul{
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* end menu */
 
 
@@ -422,24 +434,6 @@ footer {
 
 
 /* responsif */
-/* @media (max-width: 700px) {
-  .footer-content {
-    text-align: center;
-    flex-direction: column;
-  }
-
-  .footer-section ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-}
-@media (max-width: 700px) {
-  .social-icons {
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-} */
 @media (max-width: 700px) {
 
   /*PENGATURAN CONTAINER UNTUK HP */
@@ -494,7 +488,7 @@ footer {
 
   .footer-main {
     flex-direction: column;
-    gap: 30px; /* Memberi jarak antara area kontak dan info toko */
+    gap: 30px;
   }
 
   /* 2. Pusatkan semua teks di HP */

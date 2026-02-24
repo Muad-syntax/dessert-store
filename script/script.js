@@ -118,3 +118,22 @@ function resetInterval() {
 }
 
 startInterval();
+
+// fade in scrol
+
+const observerAnimasi = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('muncul');
+            observerAnimasi.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.15
+});
+
+const elemenFadeIn = document.querySelectorAll('.fade-in');
+
+elemenFadeIn.forEach(elemen => {
+    observerAnimasi.observe(elemen);
+});
