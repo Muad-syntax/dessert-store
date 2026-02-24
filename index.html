@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dessert Store</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -20,11 +20,14 @@
 </head>
 
 <body>
+    <!-- start container -->
     <div class="container">
+        <!-- start header -->
         <header>
+            <!-- navbar -->
             <nav>
                 <div class="nama-toko">
-                    <img src="Momochi.png" alt="" class="logo">
+                    <img src="images/Momochi.png" alt="" class="logo">
                     <h2>Dessert Store</h2>
                 </div>
                 <div class="hamburger" id="hamburger-menu">
@@ -41,116 +44,146 @@
                 </ul>
             </nav>
         </header>
+        <!-- end header -->
+
+        <!-- start main -->
         <main>
+            <!-- hero -->
             <section class="hero" id="beranda">
-                <h1>Selamat Datang di <br> Dessert Store</h1>
-                <p>
-                <h3 style="font-weight: 100;">Menawarkan berbagai macam hidangan penutup</h3>
-                </p>
-                <a href="#produk" class="btn">Lihat Produk</a>
+                <div class="slider-container">
+                    <div class="slider-wrapper">
+                        <img src="images/bg-main (1).png" alt="">
+                        <img src="images/bg-main (2).png" alt="">
+                        <img src="images/bg-main (3).png" alt="">
+                        <img src="images/bg-mochi.png" alt="">
+                    </div>
+                </div>
+
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+
+                <div class="hero-content">
+                    <h1>Selamat Datang di <br> Dessert Store</h1>
+                    <p>
+                    <h3 style="font-weight: 100;">Menawarkan berbagai macam hidangan penutup</h3>
+                    </p>
+                    <a href="#produk" class="btn">Lihat Produk</a>
+                </div>
+
+                <div class="slider-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
             </section>
+            <!-- start menu -->
             <div class="menu" id="produk">
                 <h1>Produk</h1>
                 <div class="card">
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (1).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (2).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (3).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (1).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (2).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (3).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (1).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (2).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (3).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (1).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (2).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (3).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (1).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (2).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (3).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                     <div class="card-produk">
-                        <img src="Momochi.png" alt="" style="width: 50px;">
+                        <img src="images/bg-main (1).png" alt="" style="width: 50px;">
                         <label>Original</label>
                         Rp.5,000
                         <button onclick="tambahKeKeranjang('Mochi Original', 5000)">Beli</button>
                     </div>
                 </div>
             </div>
+            <!-- end menu -->
         </main>
+        <!-- end main -->
+
+        <!-- keranjang -->
         <div class="keranjang" id="keranjang">
             <h1>Keranjang</h1>
             <ul style="padding: 0;" type="none">
@@ -164,6 +197,8 @@
             </button>
 
         </div>
+
+        <!-- start footer -->
         <footer id="footer">
             <div class="footer-main">
                 <div class="footer-contact">
@@ -178,17 +213,22 @@
                     <div class="social-icons">
                         <h3>Kunjungi media sosial kami</h3>
                         <div class="icons">
-                            <a href="https://www.instagram.com/momocichimomo?igsh=MXQ3dGx3eG41N2ZocQ=="><i class="fab fa-instagram"></i></i></a>
-                            <a href="https://www.facebook.com/profile.php?id=61586943933387&mibextid=ZbWKwL"><i class="fab fa-facebook"></i></i></a>
-                            <a href="https://www.tiktok.com/@momochioish1?_r=1&_t=ZS-93Ib79KWyZt"><i class="fab fa-tiktok"></i></i></a>
-                            <a href="https://youtube.com/@chimomodeli?si=X6Hx04asf9-ArIu1"><i class="fab fa-youtube"></i></i></a>
+                            <a href="https://www.instagram.com/momocichimomo?igsh=MXQ3dGx3eG41N2ZocQ=="><i
+                                    class="fab fa-instagram"></i></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61586943933387&mibextid=ZbWKwL"><i
+                                    class="fab fa-facebook"></i></i></a>
+                            <a href="https://www.tiktok.com/@momochioish1?_r=1&_t=ZS-93Ib79KWyZt"><i
+                                    class="fab fa-tiktok"></i></i></a>
+                            <a href="https://youtube.com/@chimomodeli?si=X6Hx04asf9-ArIu1"><i
+                                    class="fab fa-youtube"></i></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="footer-content">
                     <div class="footer-section about">
                         <h3>Dessert Store</h3>
-                        <p>Menyediakan berbagai macam mochi <br> dan hidangan penutup manis untuk <br> hari istimewa Anda.</p>
+                        <p>Menyediakan berbagai macam mochi <br> dan hidangan penutup manis untuk <br> hari istimewa
+                            Anda.</p>
                     </div>
                     <div class="footer-section links">
                         <h3>Navigasi</h3>
@@ -206,8 +246,10 @@
                 <p>&copy; 2026 Desert Store. Semua hak dilindungi.</p>
             </div>
         </footer>
+        <!-- end footer -->
     </div>
-    <script src="script.js"></script>
+    <!-- end container -->
+    <script src="script/script.js"></script>
 </body>
 
 </html>
