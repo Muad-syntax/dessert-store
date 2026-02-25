@@ -42,9 +42,9 @@ function checkoutWA() {
 }
 
 // Memantau gerakan scroll pada layar
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const header = document.querySelector('header');
-    
+
     // Jika layar di-scroll lebih dari 10 pixel dari atas
     if (window.scrollY > 50) {
         header.classList.add('scrolled'); // Ubah lengkungan ke bawah
@@ -57,7 +57,7 @@ const hamburger = document.getElementById('hamburger-menu');
 const navMenu = document.getElementById('nav-menu');
 const headerElement = document.querySelector('header');
 
-hamburger.addEventListener('click', function() {
+hamburger.addEventListener('click', function () {
     navMenu.classList.toggle('tampil');
     headerElement.classList.toggle('menu-buka');
 })
@@ -70,25 +70,69 @@ const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
 const dots = document.querySelectorAll('.dot');
 
-let slideIndex = 0;
+let slideIndex = 1;
 let slideInterval;
+let isTransitioning = false;
+
+const firstClone = slides[0].cloneNode(true);
+const lastClone = slides[slides.length - 1].cloneNode(true);
+
+sliderWrapper.appendChild(firstClone);
+sliderWrapper.insertBefore(lastClone, slides[0]);
+
+sliderWrapper.style.display = 'flex';
+sliderWrapper.style.flexWrap = 'nowrap';
+const allSlides = document.querySelectorAll('.slider-wrapper img');
+allSlides.forEach(img => {
+    img.style.minWidth = '100%';
+    img.style.flexShrink = '0';
+});
+
+sliderWrapper.style.transition = 'none';
+sliderWrapper.style.transform = `translateX(-100)`;
 
 function updateSlider() {
+    sliderWrapper.style.transition = 'transform 0.5s ease-in-out';
     sliderWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
 
     dots.forEach(dot => dot.classList.remove('active'));
-    dots[slideIndex].classList.add('active');
+
+    let dotIndex = slideIndex - 1;
+    if (slideIndex === slides.length + 1) dotIndex = 0;
+    if (slideIndex === 0) dotIndex = slides.length - 1;
+
+    if (dots[dotIndex]) dots[dotIndex].classList.add('active');
 }
 
 function nextSlide() {
-    slideIndex = (slideIndex + 1) % slides.length;
+    if (isTransitioning) return;
+    isTransitioning = true;
+    slideIndex++;
     updateSlider();
 }
 
 function prevSlide() {
-    slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+    if (isTransitioning) return;
+    isTransitioning = true;
+    slideIndex--;
     updateSlider();
 }
+
+sliderWrapper.addEventListener('transitionend', () => {
+    isTransitioning = false;
+    if (slideIndex === slides.length + 1) {
+        sliderWrapper.style.transition = 'none';
+        slideIndex = 1;
+        sliderWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+
+
+    if (slideIndex === 0) {
+        sliderWrapper.style.transition = 'none';
+        slideIndex = slides.length;
+        sliderWrapper.style.transform = `translateX(-${slideIndex * 100}%)`; 
+    }
+});
 
 nextBtn.addEventListener('click', () => {
     nextSlide();
@@ -102,14 +146,14 @@ prevBtn.addEventListener('click', () => {
 
 dots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
-        slideIndex = index;
+        slideIndex = index + 1;
         updateSlider();
         resetInterval();
     });
 });
 
 function startInterval() {
-    slideInterval = setInterval(nextSlide, 4000);
+    slideInterval = setInterval(nextSlide, 3000);
 }
 
 function resetInterval() {
