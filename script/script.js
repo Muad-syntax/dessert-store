@@ -23,6 +23,12 @@ function perbaruiTampilanKeranjang() {
     teksTotal.textContent = totalHarga.toLocaleString('id-ID');
 }
 function checkoutWA() {
+    if (!window.isUserLoggedIn) {
+        alert("Silahkan login terlebih dahulu sebelum memesan");
+        window.location.href = "login.html"
+        return;
+    }
+
     if (keranjang.length === 0) {
         alert("Keranjang Anda masih kosong. Silahkan dipilih menunya!");
         return

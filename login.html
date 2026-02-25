@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Dessert Store</title>
-    <link rel="stylesheet" href="/style/login.css">
+    <link rel="stylesheet" href="style/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Coiny&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Coiny&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body class="auth-body">
     <div class="auth-card">
         <img src="images/Momochi.png" alt="logo" class="auth-logo">
@@ -24,5 +28,51 @@
         <p class="auth-link">Belum punya akun? <a href="register.html"> Daftar di sini</a></p>
         <p class="auth-link"><a href="index.html" class="back-link">&larr; Kembali ke Beranda</a></p>
     </div>
+
+    <script type="module">
+        // Pakai versi 12.9.0 sesuai bawaan Firebase kamu
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+
+        // PASTE FIREBASE CONFIG KAMU DI SINI
+        const firebaseConfig = {
+            apiKey: "AIzaSyDLN4WbDZTun-DyYxRNcTQvgxf5Jww_Dcg",
+            authDomain: "dessert-store-dab4d.firebaseapp.com",
+            projectId: "dessert-store-dab4d",
+            storageBucket: "dessert-store-dab4d.firebasestorage.app",
+            messagingSenderId: "718001093765",
+            appId: "1:718001093765:web:c7f8d97567cfcad0517dec"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const loginForm = document.getElementById('login-form');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Mencegah reload halaman
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Proses Login ke Firebase
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Jika login berhasil
+                    alert("Login Berhasil! Selamat datang di Dessert Store.");
+                    window.location.href = "index.html"; // Arahkan ke halaman utama toko
+                })
+                .catch((error) => {
+                    // Jika login gagal (password salah / email tidak terdaftar)
+                    alert("Gagal Login: Email atau Password salah!");
+                    console.error(error.message);
+                });
+        });
+    </script>
 </body>
+
+</html>
+</body>
+
 </html>

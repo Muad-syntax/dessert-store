@@ -7,6 +7,20 @@
   font-family: "Hanken Grotesk", sans-serif;
 }
 
+.auth-body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/bg-main\ \(3\).png');
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px) brightness(0.7);
+    z-index: -1;
+}
+
 .auth-card {
   background-color: #FFF7CD;
   padding: 40px;

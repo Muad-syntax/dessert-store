@@ -41,6 +41,7 @@
                     <li><a href="#produk" class="btn">Produk</a></li>
                     <li><a href="#keranjang" class="btn">Keranjang</a></li>
                     <li><a href="#footer" class="btn">Kontak</a></li>
+                    <li><a href="login.html" class="btn" id="auth-btn">Login</a></li>
                 </ul>
             </nav>
         </header>
@@ -64,6 +65,7 @@
 
                 <div class="hero-content">
                     <h1>Selamat Datang di <br> Dessert Store</h1>
+                    <span id="user-greeting" style="font-size: 2em; color: #FB9B8F; text-shadow: 0 2px 3px rgb(0, 0, 0);"></span>
                     <p>
                     <h3 style="font-weight: 100;">Menawarkan berbagai macam hidangan penutup</h3>
                     </p>
@@ -250,6 +252,61 @@
     </div>
     <!-- end container -->
     <script src="script/script.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+        // Kita import onAuthStateChanged (CCTV) dan signOut (Log out)
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDLN4WbDZTun-DyYxRNcTQvgxf5Jww_Dcg",
+            authDomain: "dessert-store-dab4d.firebaseapp.com",
+            projectId: "dessert-store-dab4d",
+            storageBucket: "dessert-store-dab4d.firebasestorage.app",
+            messagingSenderId: "718001093765",
+            appId: "1:718001093765:web:c7f8d97567cfcad0517dec"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Mengambil elemen dari HTML
+        const authBtn = document.getElementById('auth-btn');
+        const userGreeting = document.getElementById('user-greeting');
+
+        // CCTV Firebase: Mengecek apakah ada user yang sedang login
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // --- JIKA USER SEDANG LOGIN ---
+                window.isUserLoggedIn = true;
+                // Ambil nama dari email (contoh: "budi@gmail.com" jadi "budi")
+                const namaUser = user.email.split('@')[0];
+
+                // Tampilkan sapaan
+                userGreeting.textContent = `${namaUser}`;
+                userGreeting.style.display = 'inline-block';
+
+                // Ubah tombol Login jadi Logout
+                authBtn.textContent = 'Logout';
+                authBtn.href = '#';
+
+                // Bikin tombolnya berfungsi untuk Logout saat diklik
+                authBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    signOut(auth).then(() => {
+                        alert("Berhasil Logout. Sampai jumpa lagi!");
+                        window.location.reload(); // Refresh halaman
+                    });
+                });
+
+            } else {
+                // --- JIKA TIDAK ADA USER YANG LOGIN ---
+                window.isUserLoggedIn = false;
+                userGreeting.style.display = 'none';
+                authBtn.textContent = 'Login';
+                authBtn.href = 'login.html';
+            }
+        });
+    </script>
 </body>
 
 </html>

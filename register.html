@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Dessert Store</title>
-    <link rel="stylesheet" href="/style/register.css">
+    <link rel="stylesheet" href="style/register.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -29,6 +29,46 @@
         <p class="auth-link"><a href="index.html" class="back-link">&larr; Kembali ke Beranda</a></p>
     </div>
 
+    
+        <script type="module">
+        // Menggunakan versi 10.8.1 yang valid
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDLN4WbDZTun-DyYxRNcTQvgxf5Jww_Dcg",
+            authDomain: "dessert-store-dab4d.firebaseapp.com",
+            projectId: "dessert-store-dab4d",
+            storageBucket: "dessert-store-dab4d.firebasestorage.app",
+            messagingSenderId: "718001093765",
+            appId: "1:718001093765:web:c7f8d97567cfcad0517dec"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const registerForm = document.getElementById('register-form');
+
+        // TYPO DIPERBAIKI: 'submit'
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+
+            // TYPO DIPERBAIKI: createUserWithEmailAndPassword
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    alert("Berhasil Membuat Akun. Silahkan Login!");
+                    window.location.href = "login.html";
+                })
+                .catch((error) => {
+                    alert("Gagal mendaftar: " + error.message);
+                });
+        });
+    </script>
 </body>
 
 </html>
