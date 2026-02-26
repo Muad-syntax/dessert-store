@@ -186,19 +186,24 @@
         <!-- end main -->
 
         <!-- keranjang -->
-        <div class="keranjang" id="keranjang">
-            <h1>Keranjang</h1>
-            <ul style="padding: 0;" type="none">
-                <li id="daftar-pesanan"></li>
-            </ul>
+        <section id="keranjang" class="keranjang-section">
+            <div class="keranjang-container">
+                <h2><i class="fas fa-shopping-cart"></i> Keranjang Belanja</h2>
 
-            <h3>Total: Rp <span id="total-harga">0</span></h3>
-
-            <button onclick="checkoutWA()" class="orderwa">
-                Order via WhatsApp
-            </button>
-
-        </div>
+                <div class="keranjang-content">
+                    <ul id="daftar-pesanan" class="daftar-pesanan">
+                        <li class="empty-cart">Silahkan pilih menu</li>
+                    </ul>
+                    
+                    <div class="keranjang-summary">
+                        <p class="total-text">Total Belanja<span class="total-amount">Rp. <span id="total-harga">0</span></span></p>
+                        <button onclick="checkoutWA()" class="btn btn-checkout">
+                            <i class="fab fa-whatsapp"></i> Checkout via WhastApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- start footer -->
         <footer id="footer">

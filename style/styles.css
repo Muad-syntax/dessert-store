@@ -260,11 +260,10 @@ header.scrolled {
 .card-produk>button:hover {
   transition: all 0.3s ease;
   cursor: pointer;
-  background-color: #000;
+  background-color: #575757;
   color: #FFF7CD;
   font-weight: bold;
-  padding: 10px;
-  width: 100px;
+  padding: 6px;
 }
 
 .card:hover> :not(:hover) {
@@ -288,19 +287,103 @@ header.scrolled {
 
 
 /* start keranjang */
-.keranjang {
+.keranjang-section {
+  padding: 80px 10%;
+  background-color: transparent; 
+}
+
+.keranjang-container {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
+}
+
+.keranjang-container h2 {
+  color: #FB9B8F;
+  font-family: "Coiny", cursive;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 2rem;
   text-align: center;
 }
 
-button.orderwa {
-  background-color: #25D366;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+/* List Item Pesanan */
+.daftar-pesanan {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  max-height: 250px;
+  overflow-y: auto; /* Bisa di-scroll kalau pesanannya banyak */
+  border-bottom: 2px dashed #FDC3A1;
+  padding-bottom: 10px;
+}
+
+.daftar-pesanan li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f9f9f9;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.daftar-pesanan li:last-child {
+  border-bottom: none;
+}
+
+.empty-cart {
+  color: #aaa !important;
+  font-style: italic;
+  font-weight: normal !important;
+  justify-content: center !important;
+}
+
+/* Bagian Total & Tombol */
+.keranjang-summary {
+  margin-top: 20px;
+}
+
+.total-text {
+  font-size: 1.2rem;
   font-weight: bold;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.total-amount {
+  color: #FB9B8F;
+  font-size: 1.6rem;
+}
+
+.btn-checkout {
+  width: 100%;
+  background-color: #25D366; /* Warna Hijau Khas WhatsApp */
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-checkout:hover {
+  background-color: #1ebe5d;
+  padding: 15px;
+  box-shadow: 0 8px 15px rgba(37, 211, 102, 0.4);
 }
 
 /* end keranjang */

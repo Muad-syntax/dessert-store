@@ -1,10 +1,12 @@
 let keranjang = [];
 let totalHarga = 0;
 
-function tambahKeKeranjang(namaProduk, hargaProduk) {
-    keranjang.push({ nama: namaProduk, harga: hargaProduk });
+function tambahKeKeranjang(namaProduk, hargaProduk, deskripsiProduk = '') {
+    keranjang.push({ nama: namaProduk, harga: hargaProduk, deskripsi: deskripsiProduk });
     totalHarga += hargaProduk;
     perbaruiTampilanKeranjang();
+
+    alert(`${namaProduk} ditambahkan ke keranjang!`)
 }
 
 function perbaruiTampilanKeranjang() {
@@ -13,12 +15,20 @@ function perbaruiTampilanKeranjang() {
 
     daftarPesan.innerHTML = '';
 
-    keranjang.forEach((item) => {
-        const li = document.createElement('li')
-
-        li.textContent = `${item.nama} - Rp. ${item.harga.toLocaleString('id-ID')}`;
-        daftarPesan.appendChild(li);
-    });
+    if (keranjang.length === 0) {
+        daftarPesan.innerHTML = '<li class="empty-cart">Keranjang masih kosong. Silahkan Pilih Menu Anda!</li>';
+    } else {
+        keranjang.forEach((item) => {
+            const li = document.createElement('li');
+            li.innerHTML = `<div class="item-info" style="display: flex; flex-direction: column;">
+                    <span class="item-nama" style="font-weight: bold; color: #333;">${item.nama}</span>
+                    <span class="item-deskripsi" style="font-size: 0.85rem; color: #888; margin-top: 4px;">${item.deskripsi} </span>
+                </div> 
+                <span class="item-harga" style="color: #FB9B8F; font-weight: bold;"> Rp. ${item.harga.toLocaleString('id-ID')}</span>
+            `;
+            daftarPesan.appendChild(li);
+        });
+    }
 
     teksTotal.textContent = totalHarga.toLocaleString('id-ID');
 }
@@ -136,7 +146,7 @@ sliderWrapper.addEventListener('transitionend', () => {
     if (slideIndex === 0) {
         sliderWrapper.style.transition = 'none';
         slideIndex = slides.length;
-        sliderWrapper.style.transform = `translateX(-${slideIndex * 100}%)`; 
+        sliderWrapper.style.transform = `translateX(-${slideIndex * 100}%)`;
     }
 });
 
