@@ -65,7 +65,8 @@
 
                 <div class="hero-content">
                     <h1>Selamat Datang di <br> Dessert Store</h1>
-                    <span id="user-greeting" style="font-size: 2em; color: #FB9B8F; text-shadow: 0 2px 3px rgb(0, 0, 0);"></span>
+                    <span id="user-greeting"
+                        style="font-size: 2em; color: #FB9B8F; text-shadow: 0 2px 3px rgb(0, 0, 0);"></span>
                     <p>
                     <h3 style="font-weight: 100;">Menawarkan berbagai macam hidangan penutup</h3>
                     </p>
@@ -194,9 +195,10 @@
                     <ul id="daftar-pesanan" class="daftar-pesanan">
                         <li class="empty-cart">Silahkan pilih menu</li>
                     </ul>
-                    
+
                     <div class="keranjang-summary">
-                        <p class="total-text">Total Belanja<span class="total-amount">Rp. <span id="total-harga">0</span></span></p>
+                        <p class="total-text">Total Belanja<span class="total-amount">Rp. <span
+                                    id="total-harga">0</span></span></p>
                         <button onclick="checkoutWA()" class="btn btn-checkout">
                             <i class="fab fa-whatsapp"></i> Checkout via WhastApp
                         </button>
@@ -261,7 +263,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
         // Kita import onAuthStateChanged (CCTV) dan signOut (Log out)
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
-
+        import { getFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
         const firebaseConfig = {
             apiKey: "AIzaSyDLN4WbDZTun-DyYxRNcTQvgxf5Jww_Dcg",
             authDomain: "dessert-store-dab4d.firebaseapp.com",
@@ -273,6 +275,14 @@
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        window.db = db;
+        window.auth = auth;
+        window.doc = doc;
+        window.setDoc = setDoc;
+        window.getDoc = getDoc;
+        window.onSnapshot = onSnapshot;
 
         // Mengambil elemen dari HTML
         const authBtn = document.getElementById('auth-btn');
@@ -303,6 +313,9 @@
                     });
                 });
 
+                if (typeof sinkronkanKeranjangRealtime === 'function') {
+                    sinkronkanKeranjangRealtime(user.uid);
+                }
             } else {
                 // --- JIKA TIDAK ADA USER YANG LOGIN ---
                 window.isUserLoggedIn = false;

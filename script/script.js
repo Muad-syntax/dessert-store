@@ -1,36 +1,99 @@
 let keranjang = [];
 let totalHarga = 0;
 
-function tambahKeKeranjang(namaProduk, hargaProduk, deskripsiProduk = '') {
-    keranjang.push({ nama: namaProduk, harga: hargaProduk, deskripsi: deskripsiProduk });
-    totalHarga += hargaProduk;
-    perbaruiTampilanKeranjang();
+async function tambahKeKeranjang(namaProduk, hargaProduk, deskripsiProduk = '') {
+    const user = window.auth.currentUser;
+    if (!user) {
+        alert("Silahkan login terlebih dahulu");
+        window.location.href = "login.html";
+        return;
+    }
 
-    alert(`${namaProduk} ditambahkan ke keranjang!`)
-}
+    const cartRef = window.doc(window.db, "carts", user.uid);
+    const cartSnap = await window.getDoc(cartRef);
+    let items = [];
 
-function perbaruiTampilanKeranjang() {
-    const daftarPesan = document.getElementById('daftar-pesanan');
-    const teksTotal = document.getElementById('total-harga');
+    if (cartSnap.exists()) {
+        items = cartSnap.data().items;
+    }
 
-    daftarPesan.innerHTML = '';
+    const existingItem = items.find(item => item.nama === namaProduk);
 
-    if (keranjang.length === 0) {
-        daftarPesan.innerHTML = '<li class="empty-cart">Keranjang masih kosong. Silahkan Pilih Menu Anda!</li>';
+    if (existingItem) {
+        existingItem.jumlah += 1; // Jika ada, tambah jumlahnya
     } else {
-        keranjang.forEach((item) => {
-            const li = document.createElement('li');
-            li.innerHTML = `<div class="item-info" style="display: flex; flex-direction: column;">
-                    <span class="item-nama" style="font-weight: bold; color: #333;">${item.nama}</span>
-                    <span class="item-deskripsi" style="font-size: 0.85rem; color: #888; margin-top: 4px;">${item.deskripsi} </span>
-                </div> 
-                <span class="item-harga" style="color: #FB9B8F; font-weight: bold;"> Rp. ${item.harga.toLocaleString('id-ID')}</span>
-            `;
-            daftarPesan.appendChild(li);
+        items.push({ 
+            nama: namaProduk, 
+            harga: hargaProduk, 
+            deskripsi: deskripsiProduk, 
+            jumlah: 1 
         });
     }
 
-    teksTotal.textContent = totalHarga.toLocaleString('id-ID');
+    await window.setDoc(cartRef, { items: items });
+    alert(`${namaProduk} berhasil ditambahkan!`);
+}
+
+async function ubahJumlah(namaProduk, aksi) {
+    const user = window.auth.currentUser;
+    const cartRef = window.doc(window.db, "carts", user.uid);
+    const cartSnap = await window.getDoc(cartRef);
+
+    if (cartSnap.exists()) {
+        let items = cartSnap.data().items;
+        const index = items.findIndex(item => item.nama === namaProduk);
+
+        if (index !== -1) {
+            if (aksi === 'tambah') {
+                items[index].jumlah += 1;
+            } else if (aksi === 'kurang') {
+                items[index].jumlah -= 1;
+                if (items[index].jumlah <= 0) {
+                    items.splice(index, 1); // Hapus jika jumlah 0
+                }
+            }
+            await window.setDoc(cartRef, { items: items });
+        }
+    }
+}
+
+// Panggil fungsi ini saat user login
+function sinkronkanKeranjangRealtime(uid) {
+    const cartRef = window.doc(window.db, "carts", uid);
+
+    // onSnapshot akan jalan otomatis setiap kali data di database berubah
+    window.onSnapshot(cartRef, (doc) => {
+        const daftarPesan = document.getElementById('daftar-pesanan');
+        const teksTotal = document.getElementById('total-harga');
+        
+        if (!doc.exists() || doc.data().items.length === 0) {
+            daftarPesan.innerHTML = '<li class="empty-cart">Keranjang kosong.</li>';
+            teksTotal.innerText = 'Rp. 0';
+            return;
+        }
+
+        const items = doc.data().items;
+        daftarPesan.innerHTML = '';
+        let total = 0;
+
+        items.forEach((item) => {
+            total += (item.harga * item.jumlah);
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <div class="item-info">
+                    <span class="item-nama"><b>${item.nama}</b> (x${item.jumlah})</span>
+                </div>
+                <div class="item-controls">
+                    <button onclick="ubahJumlah('${item.nama}', 'kurang')">-</button>
+                    <button onclick="ubahJumlah('${item.nama}', 'tambah')">+</button>
+                    <span class="item-harga">Rp ${ (item.harga * item.jumlah).toLocaleString() }</span>
+                </div>
+            `;
+            daftarPesan.appendChild(li);
+        });
+
+        teksTotal.innerText = `Rp. ${total.toLocaleString()}`;
+    });
 }
 function checkoutWA() {
     if (!window.isUserLoggedIn) {
